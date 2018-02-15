@@ -13,9 +13,14 @@ class ArticlesController < ApplicationController
 
 	def create
 		@article = Article.new(article_params)
+		uri = URI.parse("http://0.0.0.0:8000")
+		http = Net::HTTP.new(uri.host, uri.port)
+		request = Net::HTTP::Post.new("/predict")
+		response = http.request(request)
+
 		@aux = Article.new
-		@aux.title = %x[System('python test.py')]
-		@aux.text = %x[System('python test.py')]
+		@aux.title = response.body	
+		@aux.text = response.body
 
  		respond_to do |format|
  			if @article.save
