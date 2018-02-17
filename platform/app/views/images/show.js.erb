@@ -1,0 +1,26 @@
+$(document).ready(function() {
+  $("#transcription").text("<%=@aux.word%>")
+
+  console.log("lalala");
+  console.log("<%=@aux.word%>");
+  console.log("lalala");
+  var img = $("#img_preview");
+  console.log(img);
+  var cnvs = $("#myCanvas")[0];
+  console.log("lalalalalal");
+  console.log(cnvs);
+
+  cnvs.width = 400;
+  cnvs.height = 500;
+  cnvs.style.left = img.offsetLeft + "px";
+  cnvs.style.top = img.offsetTop + "px";
+        
+  var aux = "<%= @aux %>"
+  var ctx = cnvs.getContext('2d');
+  ctx.beginPath();
+  ctx.rect(aux.x0, aux.y0, aux.x1, aux.y1);
+  ctx.rect(90, 40, 150, 100);
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = '#00ff00';
+  ctx.stroke();
+});

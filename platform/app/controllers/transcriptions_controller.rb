@@ -1,2 +1,0 @@
-class TranscriptionsController < ApplicationController
-end

@@ -1,0 +1,21 @@
+
+<div id="divNuevo">
+  
+</div>
+
+<section>
+  <div>
+    <%= form_for @image, html: {multipart: true, remote: true} do |form| %>
+      <%= form.file_field :text_image , id: "upload_image",  required: true%>
+      <%= submit_tag "Transcript", id: "btn_submit_image" %>
+    <% end %>
+  </div>
+  <div id='transcription_view'>
+    <canvas id='myCanvas' width="0" height="0"></canvas>
+    <div id='upload_image_view'>  </div>
+
+  </div>
+  <div id='transcription_text'>
+    <textarea id=transcription placeholder="Upload an image to see a transcription" cols="150", rows="10"></textarea>
+  </div>
+</section>
