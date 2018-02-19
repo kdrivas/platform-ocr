@@ -17,7 +17,7 @@ $(document).ready(function() {
       console.log(heigth);
 
 
-      if((width <= 800 && width >= 200) && (heigth <= 800 && heigth >= 200)){
+      if((width <= 800 ) && (heigth <= 800 )){
         console.log("entree");
         $('#upload_image_view').html(img);
         $("#btn_submit_image").disabled = false;

@@ -10,14 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215045430) do
+ActiveRecord::Schema.define(version: 20180218024959) do
 
   create_table "anns", force: :cascade do |t|
-    t.float "x0"
-    t.float "y0"
-    t.float "x1"
-    t.float "y1"
-    t.string "word"
     t.integer "flag", default: 1
     t.integer "votes", default: 1
     t.datetime "created_at", null: false
@@ -27,6 +22,16 @@ ActiveRecord::Schema.define(version: 20180215045430) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bboxes", force: :cascade do |t|
+    t.float "x0"
+    t.float "y0"
+    t.float "x1"
+    t.float "y1"
+    t.string "word"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

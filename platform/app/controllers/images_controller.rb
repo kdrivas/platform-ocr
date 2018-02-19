@@ -9,32 +9,34 @@ class ImagesController < ApplicationController
 
   def create
     @image = Image.create(image_params)
-    
-    @aux1 = Ann.new
-    @aux1.x0 = 12 
-    @aux1.y0 = 34
-    @aux1.x1 = 100
-    @aux1.y1 = 200
-
-    
-
-    
 
     respond_to do |format|
       if @image.save
-        path = "#{Rails.root}/public/system/text_images/111/original_Captura_de_pantalla_de_2017-09-12_11-43-48.png" 
+        path = "#{Rails.root}/public/system/text_images/" + @image.id.to_s + "/" + @image.text_image_file_name 
         response = RestClient.post 'http://0.0.0.0:9000/get_sentence', :imgProcessing => File.new(path, 'rb')
 
         @aux = Ann.new
-        @aux.x0 = 12 
-        @aux.y0 = 34
-        @aux.x1 = 100
-        @aux.y1 = 200
-        @aux.word = JSON.parse(response.body)['word'][0]
+
 
         format.js {render 'show'} 
       end
     end
+  end
+
+  def random
+    @image = Image.order("RANDOM()").first
+    if @image
+      redirect_to edit_image_path(@image.id)
+    else
+      redirect_to new_image_path
+    end
+  end
+
+  def edit
+    @image = Image.find(params[:id])
+  end
+
+  def update
   end
 
   private
