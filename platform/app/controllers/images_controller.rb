@@ -13,7 +13,7 @@ class ImagesController < ApplicationController
     respond_to do |format|
       if @image.save
         path = "#{Rails.root}/public/system/text_images/" + @image.id.to_s + "/" + @image.text_image_file_name 
-        response = RestClient.post 'http://0.0.0.0:9000/get_sentence', :imgProcessing => File.new(path, 'rb')
+        #response = RestClient.post 'http://0.0.0.0:9000/get_sentence', :imgProcessing => File.new(path, 'rb')
 
         @aux = Ann.new
 
